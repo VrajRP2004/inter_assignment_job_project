@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Opportunities in Japan</title>
+  <style>
+    /* General Styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Job Listings Styles */
+    #jobs input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .job-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .job-item h3 {
+      margin-top: 0;
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Work Opportunities in Japan</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#jobs">Job Listings</a></li>
+        <li><a href="#about">About Japan</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="container">
+      <h2>Welcome to Work Opportunities in Japan</h2>
+      <p>Explore exciting job prospects in Japan.</p>
+      <a href="#jobs" class="btn">View Job Listings</a>
+    </div>
+  </section>
+
+  <section id="jobs">
+    <div class="container">
+      <h2>Job Listings</h2>
+      <input type="text" id="search" placeholder="Search for jobs...">
+      <ul id="job-listings">
+        <!-- Job listings will be dynamically added here -->
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Work Opportunities in Japan</p>
+  </footer>
+
+  <script>
+    // Sample data for job listings
+    const jobListings = [
+      { title: "Software Engineer", company: "Tech Corp", location: "Tokyo", deadline: "2024-05-01" },
+      { title: "Marketing Specialist", company: "Ad Agency", location: "Osaka", deadline: "2024-05-05" },
+      // Add more job listings here
+    ];
+
+    // Function to display job listings
+    function displayJobListings() {
+      const jobListingsContainer = document.getElementById('job-listings');
+      jobListingsContainer.innerHTML = '';
+
+      jobListings.forEach(job => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('job-item');
+        listItem.innerHTML = `
+          <h3>${job.title}</h3>
+          <p><strong>Company:</strong> ${job.company}</p>
+          <p><strong>Location:</strong> ${job.location}</p>
+          <p><strong>Deadline:</strong> ${job.deadline}</p>
+        `;
+        jobListingsContainer.appendChild(listItem);
+      });
+    }
+
+    // Filter job listings based on search input
+    document.getElementById('search').addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const filteredListings = jobListings.filter(job => 
+        job.title.toLowerCase().includes(searchTerm) || 
+        job.company.toLowerCase().includes(searchTerm) ||
+        job.location.toLowerCase().includes(searchTerm)
+      );
+      displayJobListings(filteredListings);
+    });
+
+    // Display job listings on page load
+    displayJobListings();
+  </script>
+</body>
+</html>
